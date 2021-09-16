@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 
 public class Security {
 
-    private SecurityChecker securityChecker;
+    private final SecurityChecker securityChecker;
 
     public Security(SecurityChecker checker) {
         this.securityChecker = checker;
@@ -12,6 +12,6 @@ public class Security {
 
     public boolean hasAccess(User user, Permission permission, ImmutableList<Permission> permissions) {
 
-        return this.securityChecker.isAdmin() || this.securityChecker.checkPermission(user, permission) || permissions.contains(permission);
+        return securityChecker.isAdmin() || securityChecker.checkPermission(user, permission) || permissions.contains(permission);
     }
 }
