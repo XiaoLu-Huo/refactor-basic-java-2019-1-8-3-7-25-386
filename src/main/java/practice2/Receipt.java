@@ -2,6 +2,8 @@ package practice2;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Receipt {
 
@@ -49,23 +51,13 @@ public class Receipt {
 
 
     private OrderItem findOrderItemByProduct(List<OrderItem> items, Product product) {
-        OrderItem curItem = null;
-        for (OrderItem item : items) {
-            if (item.getCode() == product.getCode()) {
-                curItem = item;
-                break;
-            }
-        }
-        return curItem;
+        return items.stream().filter(item -> item.getCode() == product.getCode()).findFirst().get();
     }
 
     private BigDecimal calculateSubtotal(List<Product> products, List<OrderItem> items) {
-        BigDecimal subTotal = new BigDecimal(0);
-        for (Product product : products) {
+        return BigDecimal.valueOf(products.stream().map(product -> {
             OrderItem item = findOrderItemByProduct(items, product);
-            BigDecimal itemTotal = product.getPrice().multiply(new BigDecimal(item.getCount()));
-            subTotal = subTotal.add(itemTotal);
-        }
-        return subTotal;
+            return product.getPrice().multiply(new BigDecimal(item.getCount()));
+        }).map(BigDecimal::doubleValue).mapToDouble(i -> i).sum());
     }
 }
