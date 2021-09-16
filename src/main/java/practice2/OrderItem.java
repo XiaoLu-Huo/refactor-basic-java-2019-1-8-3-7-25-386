@@ -1,8 +1,8 @@
 package practice2;
 
 public class OrderItem {
-    private Integer count;
-    private long code;
+    private final Integer count;
+    private final long code;
 
     public OrderItem(long code, int count) {
         this.code = code;
