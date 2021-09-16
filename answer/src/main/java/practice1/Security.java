@@ -2,6 +2,7 @@ package practice1;
 
 import com.google.common.collect.ImmutableList;
 
+
 public class Security {
 
     private SecurityChecker securityChecker;
@@ -14,7 +15,7 @@ public class Security {
 
         boolean isAccess = false;
 
-        if (this.securityChecker.isAdmin() || this.securityChecker.checkPermission(user, permission) || permissions.contains(permission)) {
+        if (this.securityChecker.checkPermission(user, permission) || permissions.contains(permission) || securityChecker.isAdmin()) {
             isAccess = true;
         }
 
