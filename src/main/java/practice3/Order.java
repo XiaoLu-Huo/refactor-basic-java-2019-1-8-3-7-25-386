@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Order {
 
-    private List<OrderLineItem> orderLineItemList;
-    private List<BigDecimal> discounts;
-    private BigDecimal tax;
+    private final List<OrderLineItem> orderLineItemList;
+    private final List<BigDecimal> discounts;
+    private final BigDecimal tax;
 
     public Order(List<OrderLineItem> orderLineItemList, List<BigDecimal> discounts) {
         this.orderLineItemList = orderLineItemList;
